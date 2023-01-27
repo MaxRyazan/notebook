@@ -10,4 +10,4 @@ RUN npm install
 
 COPY . ./
 
-CMD ["node", "routes.js"]
+CMD ["node", "index.js"]

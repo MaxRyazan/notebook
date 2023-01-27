@@ -23,12 +23,4 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: bestuser
-      MYSQL_DATABASE: notebook
-    restart: always
-
-
-  adminer:
-    image: adminer
-    ports:
-      - '3000:8080'
     restart: always

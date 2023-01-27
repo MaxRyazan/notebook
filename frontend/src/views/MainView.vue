@@ -11,14 +11,14 @@
         <div v-if="state.notes.length" class="wrapper">
             <div class="search">
                 <label for="search">Поиск</label>
-                <input type="text" name="search" @keydown.enter="searchNote" class="search_input">
+                <input type="text" @keydown.enter="sync_methods.searchNote($event)" class="search_input">
             </div>
             <div v-for="note in state.notes" :key="note.id" class="main-view_all">
                 <div class="card">
-                    <h3 class="title in_card">{{ note.title }}</h3>
-                    <p class="title in_card body">{{ note.body }}</p>
+                    <h3 class="title in_card">{{ note.name }}</h3>
+                    <p class="title in_card body">{{ note.description }}</p>
                     <div class="buttons_in_card">
-                        <button class="button read">Прочитать</button>
+                        <button class="button read" @click="$router.push(`/${note.id}`)">Прочитать</button>
                         <button class="button delete">Удалить</button>
                     </div>
                 </div>
@@ -31,14 +31,14 @@
 </template>
 <script setup>
 import { useStore } from "vuex";
+import {onMounted} from "vue";
+import actions from "@/js_classes/actions";
+import sync_methods from "@/js_classes/sync_methods";
 
-const store = useStore()
-const state = store.state
+const state = useStore().state
 
-const searchNote = () => {
-    const param = document.querySelector('.search_input').value
-    if(param.trim()) {
-        state.notes = state.notes.filter(n => n.title.trim().includes(param.trim()))
-    }
-}
+
+onMounted(() => {
+    actions.getNotes()
+})
 </script>
