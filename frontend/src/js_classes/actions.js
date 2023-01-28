@@ -10,14 +10,18 @@ class Actions {
         }
     }
 
-    async deleteNote(id) {
+    async createNote(name, description) {
+        const id = +store.state.notes[store.state.notes.length - 1].id + 1
         try{
-            await fetch(`http://localhost:8081/${id}`, {
-                method: 'DELETE'
+            await fetch(`http://localhost:8081`, {
+                method: 'POST',
+                body: JSON.stringify({id: id, name: name, description: description}),
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
             })
-            store.state.notes = store.state.notes.filter(n => n.id !== id)
         } catch (e) {
-            console.error('Не удалось получить данные !')
+            console.error('Не удалось отправить данные !')
         }
     }
 }

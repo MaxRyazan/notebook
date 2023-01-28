@@ -3,10 +3,10 @@
         <div class="main-view_create">
             <h2 class="title">Блокнот для заметок</h2>
             <div class="create_container">
-                <input type="text" name="desc" class="create_input" autofocus placeholder="Введите название заметки">
-                <textarea name="body" id="" cols="30" rows="10" class="create_input textarea" placeholder="Введите текст заметки"></textarea>
+                <input v-model="state.name" type="text" class="create_input" autofocus placeholder="Введите название заметки">
+                <textarea v-model="state.description" cols="30" rows="10" class="create_input textarea" placeholder="Введите текст заметки"></textarea>
             </div>
-            <button class="button in_create">Добавить заметку</button>
+            <button class="button in_create" @click="actions.createNote(state.name, state.description)">Добавить заметку</button>
         </div>
         <div v-if="state.notes.length" class="wrapper">
             <div class="search">

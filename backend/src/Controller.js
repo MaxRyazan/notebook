@@ -28,14 +28,14 @@ class Controller{
 
     async create(req, res){
         try{
-            const {name, description} = req.body
-            const SQL_QUERY = `INSERT INTO table1 values(${name}, ${description})`
+            const {id, name, description} = req.body
+            const SQL_QUERY = `INSERT INTO table1 values(${id}, ${name}, ${description})`
             db.query(SQL_QUERY, (err, data) => {
                 if (err) return res.json(err);
                 res.json(data)
             })
         } catch (e) {
-
+            res.status(500).json(e)
         }
     }
 
