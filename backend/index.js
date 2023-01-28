@@ -22,6 +22,15 @@ app.get('/', (req, res) => {
     })
 })
 
+app.delete('/:id', (req, res) => {
+    const id = +req.params.id
+    const query = `DELETE FROM table1 WHERE id = ${id}`
+    db.query(query, (err, data) => {
+        if(err){
+            res.send('We have a error HERE !')
+        }
+    })
+})
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`)
 })
