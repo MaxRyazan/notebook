@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /app-backend
 
-EXPOSE 5000
+EXPOSE 8085
 
 COPY package*.json ./
 

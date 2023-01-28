@@ -3,7 +3,7 @@ import store from "@/store";
 class Actions {
     async getNotes() {
         try{
-            const data = await fetch(`http://localhost:8081`)
+            const data = await fetch(`http://localhost:8085`)
             store.state.notes = await data.json()
         } catch (e) {
             console.error('Не удалось получить данные !')
@@ -15,7 +15,7 @@ class Actions {
         store.state.description = null
         const id = +store.state.notes[store.state.notes.length - 1].id + 1
         try{
-            await fetch(`http://localhost:8081`, {
+            await fetch(`http://localhost:8085`, {
                 method: 'POST',
                 body: JSON.stringify({id: id, name: name, description: description}),
                 headers: {
@@ -30,7 +30,7 @@ class Actions {
 
     async deleteNote(id){
         try{
-            await fetch(`http://localhost:8081`, {
+            await fetch(`http://localhost:8085`, {
                 method: 'DELETE',
                 body: JSON.stringify({id: id}),
                 headers: {
