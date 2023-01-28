@@ -15,14 +15,14 @@ class Controller{
 
     async delete(req, res){
         try{
-            const id = +req.params.id
+            const {id} = req.body
             const SQL_QUERY = `DELETE FROM table1 WHERE id = ${id}`
             db.query(SQL_QUERY, (err, data) => {
                 if (err) return res.json(err);
                 res.json(data)
             })
         } catch (e) {
-            res.status(400).json(e)
+            res.status(500).json(e)
         }
     }
 

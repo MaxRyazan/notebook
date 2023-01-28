@@ -19,7 +19,7 @@
                     <p class="title in_card body">{{ note.description }}</p>
                     <div class="buttons_in_card">
                         <button class="button read" @click="$router.push(`/${note.id}`)">Прочитать</button>
-                        <button class="button delete">Удалить</button>
+                        <button class="button delete" @click="actions.deleteNote(note.id)">Удалить</button>
                     </div>
                 </div>
             </div>

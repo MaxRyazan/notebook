@@ -15,7 +15,8 @@ import store from "@/store";
 import { useRoute } from 'vue-router';
 const route = useRoute();
 
-const note = store.state.notes.find(n => n.id === route.params.id)
+const note = store.state.notes.find(n => n.id === +route.params.id)
+
 
 if(!note) window.location.href = '/'
 </script>
